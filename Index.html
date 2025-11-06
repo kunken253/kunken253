@@ -1,8 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Program kalkulator kuda</title>
     <style>
+        :root {
+            --calc-width: 90vw;
+            --max-calc-width: 320px;
+            --button-height: 50px;
+            --font-size-number: 18px;
+            --font-size-word: 10px;
+            --display-height: 60px;
+            --display-font-size: 20px;
+            --grid-gap: 8px;
+            --border-radius: 12px;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -16,6 +30,7 @@
             animation: gradientBG 15s ease infinite;
             position: relative;
             overflow: hidden;
+            touch-action: manipulation;
         }
 
         @keyframes gradientBG {
@@ -77,10 +92,11 @@
         }
 
         .calculator {
-            width: 220px; /* Diperkecil dari 250px menjadi 220px */
-            margin: 50px auto;
-            border-radius: 12px; /* Diperkecil dari 15px */
-            padding: 10px; /* Diperkecil dari 15px */
+            width: var(--calc-width);
+            max-width: var(--max-calc-width);
+            margin: 20px auto;
+            border-radius: var(--border-radius);
+            padding: 15px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
@@ -98,7 +114,7 @@
             right: -2px;
             bottom: -2px;
             background: linear-gradient(45deg, #1a5f3f, #2d8659, #4caf50, #8bc34a);
-            border-radius: 12px; /* Diperkecil dari 15px */
+            border-radius: var(--border-radius);
             z-index: -1;
             opacity: 0.7;
             animation: borderGlow 3s linear infinite;
@@ -115,15 +131,15 @@
 
         .display {
             width: 100%;
-            height: 40px; /* Diperkecil dari 50px */
-            margin-bottom: 8px; /* Diperkecil dari 10px */
+            height: var(--display-height);
+            margin-bottom: 10px;
             text-align: right;
-            padding: 6px; /* Diperkecil dari 8px */
-            font-size: 16px; /* Diperkecil dari 20px */
+            padding: 8px;
+            font-size: var(--display-font-size);
             box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(76, 175, 80, 0.7);
-            border-radius: 6px; /* Diperkecil dari 8px */
+            border-radius: 8px;
             color: #ffffff;
             font-weight: bold;
             letter-spacing: 1px;
@@ -136,17 +152,17 @@
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-gap: 6px; /* Diperkecil dari 8px */
+            grid-gap: var(--grid-gap);
         }
 
         .button {
-            padding: 8px 2px; /* Diperkecil dari 10px 3px */
+            padding: 5px;
             text-align: center;
-            font-size: 16px; /* Diperkecil dari 18px */
+            font-size: var(--font-size-number);
             cursor: pointer;
             background-color: rgba(209, 221, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 6px; /* Diperkecil dari 8px */
+            border-radius: 8px;
             transition: all 0.3s ease;
             color: #ffffff;
             font-weight: bold;
@@ -158,16 +174,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 45px; /* Diperkecil dari 55px */
+            height: var(--button-height);
+            -webkit-tap-highlight-color: transparent;
         }
 
         .button-number {
-            font-size: 16px; /* Diperkecil dari 20px */
-            margin-bottom: 2px; /* Diperkecil dari 3px */
+            font-size: var(--font-size-number);
+            margin-bottom: 3px;
         }
 
         .button-word {
-            font-size: 8px; /* Diperkecil dari 10px */
+            font-size: var(--font-size-word);
             opacity: 0.8;
         }
 
@@ -229,7 +246,7 @@
             grid-column: span 3;
             background-color: rgba(139, 195, 74, 0.7);
             color: white;
-            font-size: 12px; /* Ukuran font khusus untuk tombol konversi */
+            font-size: 14px;
         }
 
         .currency:hover {
@@ -242,6 +259,76 @@
 
         .button:hover, .clear:hover, .operator:hover, .equals:hover, .currency:hover {
             box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
+
+        /* Media Queries untuk Responsivitas */
+        @media (min-width: 480px) {
+            :root {
+                --calc-width: 80vw;
+                --max-calc-width: 350px;
+                --button-height: 55px;
+                --font-size-number: 20px;
+                --font-size-word: 11px;
+                --display-height: 65px;
+                --display-font-size: 22px;
+                --grid-gap: 10px;
+                --border-radius: 15px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            :root {
+                --calc-width: 70vw;
+                --max-calc-width: 380px;
+                --button-height: 60px;
+                --font-size-number: 22px;
+                --font-size-word: 12px;
+                --display-height: 70px;
+                --display-font-size: 24px;
+                --grid-gap: 12px;
+                --border-radius: 18px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --calc-width: 60vw;
+                --max-calc-width: 400px;
+                --button-height: 65px;
+                --font-size-number: 24px;
+                --font-size-word: 13px;
+                --display-height: 75px;
+                --display-font-size: 26px;
+                --grid-gap: 14px;
+                --border-radius: 20px;
+            }
+        }
+
+        /* Optimasi untuk perangkat mobile */
+        @media (max-width: 480px) {
+            .math-particles {
+                display: none; /* Nonaktifkan partikel di perangkat mobile untuk performa lebih baik */
+            }
+            
+            .calculator {
+                margin: 10px;
+            }
+        }
+
+        /* Penyesuaian untuk orientasi landscape di mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            :root {
+                --button-height: 40px;
+                --font-size-number: 16px;
+                --font-size-word: 8px;
+                --display-height: 45px;
+                --display-font-size: 18px;
+                --grid-gap: 6px;
+            }
+            
+            .calculator {
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -302,11 +389,10 @@
             <div class="button operator" onclick="appendToDisplay('+')">+</div>
             <div class="button clear" onclick="clearDisplay()">
                 <span class="button-number">C</span>
-                <span class="button-word">kosong</span>
             </div>
-            
-            <div class="button equals" onclick="calculate()">=</div>
             <div class="button currency" onclick="convertCurrency()">IDR → RM</div>
+            <div class="button equals" onclick="calculate()">=</div>
+            
         </div>
     </div>
 
@@ -316,7 +402,7 @@
 
     // Fungsi untuk memainkan audio sesuai angka
     function playNumberSound(number) {
-        const audio = new Audio(`${number}.mp3`); // misalnya file "1.mp3"
+        const audio = new Audio(`1.mp3`); // misalnya file "1.mp3"
         audio.play().catch(err => console.log("Audio error:", err));
     }
 
@@ -354,6 +440,35 @@
             display.value = 'Error';
         }
     }
+
+    // Membuat partikel matematika
+    function createMathParticles() {
+        const mathParticles = document.getElementById('mathParticles');
+        const mathSymbols = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '×', '÷', '=', 'π', '√', '∑', '∞'];
+        
+        // Hanya buat partikel jika lebar layar lebih dari 480px
+        if (window.innerWidth > 480) {
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('math-particle');
+                particle.textContent = mathSymbols[Math.floor(Math.random() * mathSymbols.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                mathParticles.appendChild(particle);
+            }
+        }
+    }
+
+    // Inisialisasi partikel saat halaman dimuat
+    window.addEventListener('load', createMathParticles);
+
+    // Hapus partikel saat ukuran layar berubah
+    window.addEventListener('resize', function() {
+        const mathParticles = document.getElementById('mathParticles');
+        mathParticles.innerHTML = '';
+        createMathParticles();
+    });
 </script>
 </body>
 </html>
